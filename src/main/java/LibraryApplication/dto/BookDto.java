@@ -5,14 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReaderDto {
+public class BookDto {
     private int Id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Long PhoneNumber;
+    private String title;
+    private String authorName;
+    private String authorLastname;
+    private boolean status;
+    private Date publicationYear;
 }
