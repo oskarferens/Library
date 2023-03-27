@@ -1,10 +1,7 @@
 package LibraryApplication.controller;
 
 import LibraryApplication.domain.Book;
-import LibraryApplication.domain.Reader;
 import LibraryApplication.service.BookService;
-import LibraryApplication.service.ReaderService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +10,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/book")
 @CrossOrigin(origins = "*")
-@RequiredArgsConstructor
 public class BookController {
 
     @Autowired
     private final BookService bookService;
 
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
     @PostMapping("/add")
-    public String add(@RequestBody Book book) {
+    public void add(@RequestBody Book book) {
         bookService.saveBook(book);
-        return ("New book created");
     }
 
     @GetMapping("/getAll")

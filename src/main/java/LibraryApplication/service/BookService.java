@@ -1,26 +1,28 @@
 package LibraryApplication.service;
 
 import LibraryApplication.domain.Book;
-import LibraryApplication.domain.Reader;
+import LibraryApplication.dto.BookDto;
 import LibraryApplication.repository.BookRepository;
-import LibraryApplication.repository.ReaderRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class BookService {
 
+    @Autowired
     private BookRepository bookRepository;
 
-    public Book saveBook(Book book) {
-        return bookRepository.save(book);
-    }
+    @Autowired
+    private BookMapper bookMapper;
 
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        List<BookDto> bookList = bookRepository.findAll();
+        return bookMapper.mapToBookDtoList(bookList);
     }
 
+    public void saveBook(BookDto book) {
+        return bookRepository.save(book);
+    }
 }
