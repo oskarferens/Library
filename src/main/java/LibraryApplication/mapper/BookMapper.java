@@ -1,16 +1,14 @@
-package LibraryApplication.service;
+package LibraryApplication.mapper;
 
 import LibraryApplication.domain.Book;
 import LibraryApplication.dto.BookDto;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
-
 @Service
 public class BookMapper {
 
     public Book mapToBook(final BookDto bookDto) {
-        return new Book(Math.toIntExact(bookDto.getId()),
+        return new Book(bookDto.getId(),
                 bookDto.getTitle(),
                 bookDto.getAuthorName(),
                 bookDto.getAuthorLastname(),
@@ -28,9 +26,4 @@ public class BookMapper {
                 book.getPublicationYear()
         );
     }
-
-    public List<BookDto> mapToBookDtoList(final List<Book> bookList) {
-        return book
-    }
-
 }

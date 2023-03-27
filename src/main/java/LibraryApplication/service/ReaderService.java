@@ -2,6 +2,7 @@ package LibraryApplication.service;
 
 import LibraryApplication.domain.Reader;
 import LibraryApplication.dto.ReaderDto;
+import LibraryApplication.mapper.ReaderMapper;
 import LibraryApplication.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

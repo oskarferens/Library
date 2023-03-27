@@ -4,6 +4,7 @@ import javax.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "BOOK")
@@ -12,7 +13,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id ;
+    private Long id ;
 
     @Column(name = "TITLE")
     @NotNull
@@ -34,7 +35,7 @@ public class Book {
     @NotNull
     private Date publicationYear;
 
-    public Book(int id, @NotNull String title, @NotNull String authorName, @NotNull String authorLastname, @NotNull boolean status, @NotNull Date publicationYear) {
+    public Book(Long id, @NotNull String title, @NotNull String authorName, @NotNull String authorLastname, @NotNull boolean status, @NotNull Date publicationYear) {
         this.id = id;
         this.title = title;
         this.authorName = authorName;
@@ -43,14 +44,14 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
-    public Book() {
+    public Book(Long id) {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -101,8 +102,8 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (id != book.id) return false;
         if (status != book.status) return false;
+        if (!Objects.equals(id, book.id)) return false;
         if (!title.equals(book.title)) return false;
         if (!authorName.equals(book.authorName)) return false;
         if (!authorLastname.equals(book.authorLastname)) return false;
@@ -111,7 +112,7 @@ public class Book {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + title.hashCode();
         result = 31 * result + authorName.hashCode();
         result = 31 * result + authorLastname.hashCode();
