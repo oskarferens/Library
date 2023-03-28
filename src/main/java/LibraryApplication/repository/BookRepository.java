@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book,Integer> {
+public interface BookRepository extends CrudRepository<Book, Long> {
+
+    @Override
+    List<Book> findAll();
 
     Book save (Book book);
 
@@ -16,6 +19,5 @@ public interface BookRepository extends CrudRepository<Book,Integer> {
 
     Optional<Book> findByAuthorName(String authorName);
 
-    List<Book> findAll();
 
 }

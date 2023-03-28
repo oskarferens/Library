@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ReaderRepository extends CrudRepository<Reader,Integer> {
+public interface ReaderRepository extends CrudRepository<Reader,Long> {
 
     Reader save (Reader reader);
 

@@ -1,10 +1,8 @@
 package LibraryApplication.service;
 
 import LibraryApplication.domain.Book;
-import LibraryApplication.dto.BookDto;
 import LibraryApplication.mapper.BookMapper;
 import LibraryApplication.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,18 +10,15 @@ import java.util.List;
 @Service
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
-    @Autowired
-    private BookMapper bookMapper;
-
-    public List<Book> getAllBooks() {
-        List<BookDto> bookList = bookRepository.findAll();
-        return bookMapper.mapToBookDtoList(bookList);
+    public BookService(BookRepository bookRepository, BookMapper bookMapper) {
+        this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
-    public void saveBook(BookDto book) {
-        return bookRepository.save(book);
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
     }
 }
